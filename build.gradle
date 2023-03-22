@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+repositories {
+	mavenCentral()
+}
+
+// bootJar 실행 비활성화
+bootJar.enabled = false
+
+subprojects {
+	group = 'com.dhkwon'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '17'
+
+	apply plugin: 'java'
+	// build.gradle에서 api() 사용을 위해 java-library 사용
+	apply plugin: 'java-library'
+	apply plugin: 'org.springframework.boot'
+	// spring boot dependency를 사용하여 사용중인 부트 버전에서 자동으로 의존성 가져옴
+	apply plugin: 'io.spring.dependency-management'
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	// 모듈들의 공통 dependencies
+	dependencies {
+
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		implementation 'org.springframework.boot:spring-boot-starter-webflux'
+		implementation 'io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64'
+		implementation 'org.springframework.boot:spring-boot-starter-validation'
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+
+}
+
+project(':api') {
+	dependencies {
+		implementation project(':core')
+	}
+}
+
+project(':web') {
+	dependencies {
+		implementation project(':api')
+	}
+}
+
+
+
+
+

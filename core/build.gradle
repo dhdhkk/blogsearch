@@ -1,0 +1,14 @@
+
+// core 모듈은 라이브러리 역할을 하는 모듈,
+// jar파일로 생성되고 다른 프로젝트에 첨부
+bootJar { enabled = false }
+jar { enabled = true }
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation( 'com.h2database:h2')
+    testCompileOnly('org.springframework.boot:spring-boot-starter-test')
+
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'net.sf.ehcache:ehcache:2.10.9.2'
+}
