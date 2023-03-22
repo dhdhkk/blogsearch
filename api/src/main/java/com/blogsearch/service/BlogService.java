@@ -1,9 +1,6 @@
 package com.blogsearch.service;
 
-
-
 import com.blogsearch.domain.SearchKeyword;
-import com.blogsearch.dto.BlogSearchResult;
 import com.blogsearch.dto.PopularKeywordResult;
 import com.blogsearch.repository.SearchKeywordRepository;
 import com.blogsearch.searchsource.SearchSource;

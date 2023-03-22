@@ -1,7 +1,5 @@
 package com.blogsearch.dto;
 
-import com.blogsearch.domain.SearchKeyword;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
